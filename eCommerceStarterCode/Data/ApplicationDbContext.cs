@@ -13,11 +13,14 @@ namespace eCommerceStarterCode.Data
 
         }
 
+        // Create DBSets for every model created in Models folder
+        public DbSet<ShoppingCart> ShopppingCarts { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            //modelBuilder.ApplyConfiguration(new RolesConfiguration());
+            // modelBuilder.ApplyConfiguration(new RolesConfiguration());
         }
 
     }
