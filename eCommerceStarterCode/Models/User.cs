@@ -7,7 +7,5 @@ namespace eCommerceStarterCode.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        [ForeignKey("ShoppingCart")]
-        public int CartId { get; set; }
     }
 }
