@@ -20,7 +20,7 @@ namespace eCommerceStarterCode.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // modelBuilder.ApplyConfiguration(new RolesConfiguration());
+            modelBuilder.ApplyConfiguration(new RolesConfiguration());
         }
 
     }

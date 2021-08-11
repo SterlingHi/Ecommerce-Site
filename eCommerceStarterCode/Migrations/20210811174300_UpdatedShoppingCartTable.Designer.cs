@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eCommerceStarterCode.Data;
 
 namespace eCommerceStarterCode.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210811174300_UpdatedShoppingCartTable")]
+    partial class UpdatedShoppingCartTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,15 +50,15 @@ namespace eCommerceStarterCode.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "047c8ff6-0d37-45b4-a528-6a74bcf7c584",
-                            ConcurrencyStamp = "ed41b94b-7571-4702-99b8-6052910a856a",
+                            Id = "a84d4078-36e1-4688-8533-6cf01e4ab506",
+                            ConcurrencyStamp = "88622875-7b7c-43d4-a7f9-af066db5bb9a",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "54e2a773-e33f-4343-afbe-1cc2cccb6230",
-                            ConcurrencyStamp = "2d9eb6a5-76be-4f12-878d-6302483cf3b4",
+                            Id = "e3734c68-fb4e-4300-8577-9210bd7e4ef0",
+                            ConcurrencyStamp = "5a78ff70-4dfb-4d3e-a465-9df71e3925b7",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -237,9 +239,6 @@ namespace eCommerceStarterCode.Migrations
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)

@@ -10,16 +10,16 @@ using System.Threading.Tasks;
 
 namespace eCommerceStarterCode.Controllers
 {
-    [Route("api/examples")]
+    [Route("api/users")]
     [ApiController]
-    public class ExamplesController : ControllerBase
+    public class Controller : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        public ExamplesController(ApplicationDbContext context)
+        public Controller(ApplicationDbContext context)
         {
             _context = context;
         }
-        // <baseurl>/api/examples/user
+        // <baseurl>/api/users/user
         [HttpGet("user"), Authorize]
         public IActionResult GetCurrentUser()
         {
@@ -30,6 +30,17 @@ namespace eCommerceStarterCode.Controllers
                 return NotFound();
             }
             return Ok(user);
+        }
+
+        [HttpGet("shoppingcarts/{id}")]
+        public IActionResult GetShoppingCartById(int id)
+        {
+            var cart = _context.ShopppingCarts.Find(id);
+            if (cart == null)
+            {
+                return NotFound();
+            }
+            return Ok(cart);
         }
     }
 }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eCommerceStarterCode.Data;
 
 namespace eCommerceStarterCode.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210811171920_OnModelCreatingUpdate")]
+    partial class OnModelCreatingUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,15 +50,15 @@ namespace eCommerceStarterCode.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "047c8ff6-0d37-45b4-a528-6a74bcf7c584",
-                            ConcurrencyStamp = "ed41b94b-7571-4702-99b8-6052910a856a",
+                            Id = "9ed5c09f-2cb5-43dc-92cb-3826225776ed",
+                            ConcurrencyStamp = "2b45c979-114a-4418-9979-db9726ff698f",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "54e2a773-e33f-4343-afbe-1cc2cccb6230",
-                            ConcurrencyStamp = "2d9eb6a5-76be-4f12-878d-6302483cf3b4",
+                            Id = "bf12c17e-2110-4827-8e29-ce2e6764386f",
+                            ConcurrencyStamp = "c8e4644e-b9fc-4920-8530-a26ec09d5db0",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -176,9 +178,6 @@ namespace eCommerceStarterCode.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("ShoppingCartId");
 
                     b.ToTable("ShopppingCarts");
@@ -237,9 +236,6 @@ namespace eCommerceStarterCode.Migrations
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)

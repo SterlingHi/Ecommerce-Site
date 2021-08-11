@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eCommerceStarterCode.Data;
 
 namespace eCommerceStarterCode.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210811175216_UpdatedUserIdName")]
+    partial class UpdatedUserIdName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,15 +50,15 @@ namespace eCommerceStarterCode.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "047c8ff6-0d37-45b4-a528-6a74bcf7c584",
-                            ConcurrencyStamp = "ed41b94b-7571-4702-99b8-6052910a856a",
+                            Id = "736ac519-8ed5-40ec-8f1d-daeb5c965639",
+                            ConcurrencyStamp = "fe7738b5-0129-451a-847b-f51bff6bf7f9",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "54e2a773-e33f-4343-afbe-1cc2cccb6230",
-                            ConcurrencyStamp = "2d9eb6a5-76be-4f12-878d-6302483cf3b4",
+                            Id = "40d11591-9458-45d0-b592-3a5c014949b2",
+                            ConcurrencyStamp = "e3df3f85-8e2f-44a7-a511-2d39a36c34b0",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -189,6 +191,9 @@ namespace eCommerceStarterCode.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("AUserId")
+                        .HasColumnType("int");
+
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
@@ -237,9 +242,6 @@ namespace eCommerceStarterCode.Migrations
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
