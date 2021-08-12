@@ -23,7 +23,18 @@ namespace eCommerceStarterCode.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // modelBuilder.ApplyConfiguration(new RolesConfiguration());
+            modelBuilder.ApplyConfiguration(new RolesConfiguration());
+
+            modelBuilder.Entity<ShoppingCart>()
+                .HasKey(sc => new { sc.UserId, sc.ProductId });
+            modelBuilder.Entity<ShoppingCart>()
+                .HasOne(sc => sc.User)
+                .WithMany(sc => sc.ShoppingCarts)
+                .HasForeignKey(sc => sc.UserId);
+            modelBuilder.Entity<ShoppingCart>()
+                .HasOne(sc => sc.Product)
+                .WithMany(sc => sc.ShoppingCarts)
+                .HasForeignKey(sc => sc.ProductId);
         }
 
     }

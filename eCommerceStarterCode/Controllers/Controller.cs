@@ -1,4 +1,5 @@
 ﻿using eCommerceStarterCode.Data;
+using eCommerceStarterCode.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -32,15 +33,27 @@ namespace eCommerceStarterCode.Controllers
             return Ok(user);
         }
 
-        [HttpGet("shoppingcarts/{id}")]
-        public IActionResult GetShoppingCartById(int id)
+        // <baseurl>/api/users/product
+        [HttpPost("product/{id}")]
+        public IActionResult AddAProduct(int? id)
         {
-            var cart = _context.ShopppingCarts.Find(id);
-            if (cart == null)
+            if (id == null)
             {
                 return NotFound();
             }
-            return Ok(cart);
+            var product = _context.Products.Find(id);
+            if (product == null)
+            {
+                product.ProductId = (int) id;
+                product.Name = "Placeholder name";
+                product.Description = "Placeholder description";
+                product.CategoryId = 0;
+                product.Category = new Category();
+                product.Price = 0.00;
+                product.Rating = 0.00;
+                _context.SaveChanges();
+            }
+            return Ok(product);
         }
     }
 }
