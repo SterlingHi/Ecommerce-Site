@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "58c6c1ba-75d9-420d-827d-76fa8980bfa3",
+		"_postman_id": "c4829ba3-31fe-48ab-8f89-459210f3d5e9",
 		"name": "ASP_NET_eCommerce_Web_API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstname\": \"David\",\r\n    \"lastname\": \"Lagrange\",\r\n    \"username\": \"dlagrange\",\r\n    \"password\": \"somePass12\",\r\n    \"email\": \"david@devcodecamp.com\",\r\n    \"phonenumber\": \"555-555-5555\"\r\n}",
+							"raw": "{\r\n    \"firstname\": \"Murray\",\r\n    \"lastname\": \"Milton\",\r\n    \"username\": \"masterm\",\r\n    \"password\": \"pass12345\",\r\n    \"email\": \"milton357@mm.com\",\r\n    \"phonenumber\": \"555-555-5555\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -79,7 +79,13 @@
 							"type": "noauth"
 						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hc3Rlcm0iLCJlbWFpbCI6Im1pbHRvbjM1N0BtbS5jb20iLCJpZCI6IjM3MzMxNzIzLWMzZGEtNGIxNy1hYmFmLWZhYTZiYzE4MmE3OSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlVzZXIiLCJleHAiOjE2Mjg3MTI2ODUsImlzcyI6ImVDb21tZXJjZVdlYkFQSSIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjUwMDEifQ.pDUr5iVGdqDSYU1_utraRQBRK9wzmmWjiTjSPbovmHg",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "https://localhost:44394/api/examples/user",
 							"protocol": "https",
@@ -91,6 +97,113 @@
 								"api",
 								"examples",
 								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Get_All_Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Get_Category_By_ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44394/api/categories/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44394",
+							"path": [
+								"api",
+								"categories",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add_A_Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44394/api/categories/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44394",
+							"path": [
+								"api",
+								"categories",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update_Category",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44394/api/categories/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44394",
+							"path": [
+								"api",
+								"categories",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_Category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44394/api/categories/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44394",
+							"path": [
+								"api",
+								"categories",
+								""
 							]
 						}
 					},
