@@ -48,15 +48,15 @@ namespace eCommerceStarterCode.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "25240fc0-e98c-4c5f-ab51-62821f07febf",
-                            ConcurrencyStamp = "24b313aa-c436-4ab5-ab04-af488fefdf74",
+                            Id = "e047655b-b52b-4dc5-a265-b7e678e22106",
+                            ConcurrencyStamp = "2d489668-eb53-4951-aa44-05d3ad9cbc79",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "c0492242-b11a-471b-9b76-383d7b5d59c5",
-                            ConcurrencyStamp = "48210525-f241-4607-9759-641dbb60f5f8",
+                            Id = "b14d4c32-86fc-41d8-b482-9d315cf9c941",
+                            ConcurrencyStamp = "b6229526-31b5-47d4-be31-9a4ba1a2c915",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -400,13 +400,11 @@ namespace eCommerceStarterCode.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("eCommerceStarterCode.Models.User", "User")
+                    b.HasOne("eCommerceStarterCode.Models.User", null)
                         .WithMany("Reviews")
                         .HasForeignKey("UserId");
 
                     b.Navigation("Product");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("eCommerceStarterCode.Models.ShoppingCart", b =>

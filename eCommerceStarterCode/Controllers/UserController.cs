@@ -13,10 +13,10 @@ namespace eCommerceStarterCode.Controllers
 {
     [Route("api/users")]
     [ApiController]
-    public class Controller : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        public Controller(ApplicationDbContext context)
+        public UserController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -31,29 +31,6 @@ namespace eCommerceStarterCode.Controllers
                 return NotFound();
             }
             return Ok(user);
-        }
-
-        // <baseurl>/api/users/product
-        [HttpPost("product/{id}")]
-        public IActionResult AddAProduct(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            var product = _context.Products.Find(id);
-            if (product == null)
-            {
-                product.ProductId = (int) id;
-                product.Name = "Placeholder name";
-                product.Description = "Placeholder description";
-                product.CategoryId = 0;
-                product.Category = new Category();
-                product.Price = 0.00;
-                product.Rating = 0.00;
-                _context.SaveChanges();
-            }
-            return Ok(product);
         }
     }
 }

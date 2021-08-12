@@ -10,8 +10,8 @@ using eCommerceStarterCode.Data;
 namespace eCommerceStarterCode.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210812144651_mergemodel")]
-    partial class mergemodel
+    [Migration("20210812162227_UpdateModels")]
+    partial class UpdateModels
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,15 +50,15 @@ namespace eCommerceStarterCode.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "bfd7464f-c9b2-497a-bed3-0c0e06fa0787",
-                            ConcurrencyStamp = "383fb5fb-1dfd-4fb6-ba74-158d2ccaad7d",
+                            Id = "e047655b-b52b-4dc5-a265-b7e678e22106",
+                            ConcurrencyStamp = "2d489668-eb53-4951-aa44-05d3ad9cbc79",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "085cb137-5ea8-4314-bd22-15a83dac7ecc",
-                            ConcurrencyStamp = "f0370df5-be77-40b3-bc6e-76d20361e685",
+                            Id = "b14d4c32-86fc-41d8-b482-9d315cf9c941",
+                            ConcurrencyStamp = "b6229526-31b5-47d4-be31-9a4ba1a2c915",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -402,13 +402,11 @@ namespace eCommerceStarterCode.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("eCommerceStarterCode.Models.User", "User")
+                    b.HasOne("eCommerceStarterCode.Models.User", null)
                         .WithMany("Reviews")
                         .HasForeignKey("UserId");
 
                     b.Navigation("Product");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("eCommerceStarterCode.Models.ShoppingCart", b =>
