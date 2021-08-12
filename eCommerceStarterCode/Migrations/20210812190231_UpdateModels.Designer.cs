@@ -10,7 +10,7 @@ using eCommerceStarterCode.Data;
 namespace eCommerceStarterCode.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210812162227_UpdateModels")]
+    [Migration("20210812190231_UpdateModels")]
     partial class UpdateModels
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,15 +50,15 @@ namespace eCommerceStarterCode.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e047655b-b52b-4dc5-a265-b7e678e22106",
-                            ConcurrencyStamp = "2d489668-eb53-4951-aa44-05d3ad9cbc79",
+                            Id = "71582a8d-87cd-4304-810d-e15c985c7bf3",
+                            ConcurrencyStamp = "bcb7c7f1-e609-4181-857b-36a207896995",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "b14d4c32-86fc-41d8-b482-9d315cf9c941",
-                            ConcurrencyStamp = "b6229526-31b5-47d4-be31-9a4ba1a2c915",
+                            Id = "40357ebb-efd8-4cba-a320-6a3eba93cc83",
+                            ConcurrencyStamp = "bf91ae27-cf2f-4cec-8334-f8eb1f730311",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

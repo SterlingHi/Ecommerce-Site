@@ -220,32 +220,32 @@ namespace eCommerceStarterCode.Migrations
             //        ProductId = table.Column<int>(type: "int", nullable: false),
             //        Quantity = table.Column<int>(type: "int", nullable: false)
             //    },
-            //    constraints: table =>
-            //    {
-            //        table.PrimaryKey("PK_ShopppingCarts", x => new { x.UserId, x.ProductId });
-            //        table.ForeignKey(
-            //            name: "FK_ShopppingCarts_AspNetUsers_UserId",
-            //            column: x => x.UserId,
-            //            principalTable: "AspNetUsers",
-            //            principalColumn: "Id",
-            //            onDelete: ReferentialAction.Cascade);
-            //        table.ForeignKey(
-            //            name: "FK_ShopppingCarts_Products_ProductId",
-            //            column: x => x.ProductId,
-            //            principalTable: "Products",
-            //            principalColumn: "ProductId",
-            //            onDelete: ReferentialAction.Cascade);
-            //    });
+                //constraints: table =>
+                //{
+                //    table.PrimaryKey("PK_ShopppingCarts", x => new { x.UserId, x.ProductId });
+                //    table.ForeignKey(
+                //        name: "FK_ShopppingCarts_AspNetUsers_UserId",
+                //        column: x => x.UserId,
+                //        principalTable: "AspNetUsers",
+                //        principalColumn: "Id",
+                //        onDelete: ReferentialAction.Cascade);
+                //    table.ForeignKey(
+                //        name: "FK_ShopppingCarts_Products_ProductId",
+                //        column: x => x.ProductId,
+                //        principalTable: "Products",
+                //        principalColumn: "ProductId",
+                //        onDelete: ReferentialAction.Cascade);
+                //});
 
             //migrationBuilder.InsertData(
             //    table: "AspNetRoles",
             //    columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-            //    values: new object[] { "e047655b-b52b-4dc5-a265-b7e678e22106", "2d489668-eb53-4951-aa44-05d3ad9cbc79", "User", "USER" });
+            //    values: new object[] { "71582a8d-87cd-4304-810d-e15c985c7bf3", "bcb7c7f1-e609-4181-857b-36a207896995", "User", "USER" });
 
             //migrationBuilder.InsertData(
             //    table: "AspNetRoles",
             //    columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-            //    values: new object[] { "b14d4c32-86fc-41d8-b482-9d315cf9c941", "b6229526-31b5-47d4-be31-9a4ba1a2c915", "Admin", "ADMIN" });
+            //    values: new object[] { "40357ebb-efd8-4cba-a320-6a3eba93cc83", "bf91ae27-cf2f-4cec-8334-f8eb1f730311", "Admin", "ADMIN" });
 
             //migrationBuilder.CreateIndex(
             //    name: "IX_AspNetRoleClaims_RoleId",
