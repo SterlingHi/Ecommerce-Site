@@ -44,22 +44,6 @@ namespace eCommerceStarterCode.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "71582a8d-87cd-4304-810d-e15c985c7bf3",
-                            ConcurrencyStamp = "bcb7c7f1-e609-4181-857b-36a207896995",
-                            Name = "User",
-                            NormalizedName = "USER"
-                        },
-                        new
-                        {
-                            Id = "40357ebb-efd8-4cba-a320-6a3eba93cc83",
-                            ConcurrencyStamp = "bf91ae27-cf2f-4cec-8334-f8eb1f730311",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -166,21 +150,6 @@ namespace eCommerceStarterCode.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("eCommerceStarterCode.Models.Category", b =>
-                {
-                    b.Property<int>("CategoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CategoryName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CategoryId");
-
-                    b.ToTable("Categories");
-                });
-
             modelBuilder.Entity("eCommerceStarterCode.Models.Product", b =>
                 {
                     b.Property<int>("ProductId")
@@ -188,8 +157,8 @@ namespace eCommerceStarterCode.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
+                    b.Property<string>("Category")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -200,28 +169,15 @@ namespace eCommerceStarterCode.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<double>("Rating")
-                        .HasColumnType("float");
-
-                    b.Property<int>("ShoppingCartId")
-                        .HasColumnType("int");
-
                     b.HasKey("ProductId");
-
-                    b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
                 });
 
             modelBuilder.Entity("eCommerceStarterCode.Models.Review", b =>
                 {
-                    b.Property<int>("ReviewId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -229,14 +185,20 @@ namespace eCommerceStarterCode.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
+                    b.Property<int?>("ReviewProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ReviewUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("ReviewId");
+                    b.Property<string>("UserReview")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "ProductId");
 
                     b.HasIndex("ProductId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("ReviewUserId", "ReviewProductId");
 
                     b.ToTable("Reviews");
                 });
@@ -249,14 +211,11 @@ namespace eCommerceStarterCode.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
                     b.HasKey("UserId", "ProductId");
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ShopppingCarts");
+                    b.ToTable("ShoppingCarts");
                 });
 
             modelBuilder.Entity("eCommerceStarterCode.Models.User", b =>
@@ -381,30 +340,27 @@ namespace eCommerceStarterCode.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("eCommerceStarterCode.Models.Product", b =>
-                {
-                    b.HasOne("eCommerceStarterCode.Models.Category", "Category")
-                        .WithMany("ProductCategories")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-                });
-
             modelBuilder.Entity("eCommerceStarterCode.Models.Review", b =>
                 {
                     b.HasOne("eCommerceStarterCode.Models.Product", "Product")
-                        .WithMany()
+                        .WithMany("Reviews")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("eCommerceStarterCode.Models.User", null)
+                    b.HasOne("eCommerceStarterCode.Models.User", "User")
                         .WithMany("Reviews")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("eCommerceStarterCode.Models.Review", null)
+                        .WithMany("Reviews")
+                        .HasForeignKey("ReviewUserId", "ReviewProductId");
 
                     b.Navigation("Product");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("eCommerceStarterCode.Models.ShoppingCart", b =>
@@ -426,14 +382,16 @@ namespace eCommerceStarterCode.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("eCommerceStarterCode.Models.Category", b =>
-                {
-                    b.Navigation("ProductCategories");
-                });
-
             modelBuilder.Entity("eCommerceStarterCode.Models.Product", b =>
                 {
+                    b.Navigation("Reviews");
+
                     b.Navigation("ShoppingCarts");
+                });
+
+            modelBuilder.Entity("eCommerceStarterCode.Models.Review", b =>
+                {
+                    b.Navigation("Reviews");
                 });
 
             modelBuilder.Entity("eCommerceStarterCode.Models.User", b =>

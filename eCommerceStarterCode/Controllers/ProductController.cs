@@ -1,78 +1,61 @@
 ﻿using eCommerceStarterCode.Data;
 using eCommerceStarterCode.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace eCommerceStarterCode.Controllers
 {
+
     [Route("api/product")]
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
         public ProductController(ApplicationDbContext context)
         {
             _context = context;
         }
-        // GET: api/<ProductController>
-        //GETS ALL PRODUCTS 
+        //Start requests here.
+        // get all merch 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetAllProducts()
         {
-            var products = _context.Products;
-            return Ok(products);
+            var product = _context.Products;
+            return Ok(product);
         }
-
-        //GET api/product/5
+        // get merch by id TESTED
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public IActionResult GetMerchById(int id)
         {
-            var product = _context.Products.FirstOrDefault(product => product.ProductId == id);
+            var product = _context.Products.Find(id);
             if (product == null)
             {
                 return NotFound();
             }
             return Ok(product);
         }
-
-        // POST api/product
+        // post or "add" new merch to database TESTED
         [HttpPost]
         public IActionResult Post([FromBody] Product value)
         {
             _context.Products.Add(value);
             _context.SaveChanges();
-            return Ok(value);
+            return StatusCode(201, value);
         }
+        // update merch by id TESTED
 
-        //// PUT api/<ProductController>/5
-        [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Product value)
+        // delete merch by id TESTED 
+        [HttpDelete("{id}")]
+        public IActionResult Remove (int id )
         {
-            var product = _context.Products.FirstOrDefault(product => product.ProductId == id);
-            product.Name = value.Name;
-            product.Price = value.Price;
-            product.Description = value.Description;
-            product.Rating = value.Rating;
-            product.CategoryId = value.CategoryId;
-            product.ShoppingCartId = value.ShoppingCartId;
+            var product = _context.Products.Find(id);
+            _context.Products.Remove(product);
             _context.SaveChanges();
             return Ok(product);
-        }
-
-        //// DELETE api/<ProductController>/5
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            var product = _context.Products.FirstOrDefault(product => product.ProductId == id);
-            _context.Remove(product);
-            _context.SaveChanges();
-            return Ok();
         }
     }
 }

@@ -8,33 +8,44 @@ namespace eCommerceStarterCode.Data
     public class ApplicationDbContext : IdentityDbContext<User>
     {
         public ApplicationDbContext(DbContextOptions options)
-            :base(options)
-        {
+            : base(options)
+        { }
+         public DbSet<Product> Products { get; set; }
 
-        }
-
-        // Create DBSets for every model created in Models folder
-        public DbSet<ShoppingCart> ShopppingCarts { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Category> Categories { get; set; }
+        // Creating a Joint Table for our Shopping Cart
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
         public DbSet<Review> Reviews { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.ApplyConfiguration(new RolesConfiguration());
+            //   modelBuilder.ApplyConfiguration(new RolesConfiguration());
+            modelBuilder.Entity<ShoppingCart>()
+                   .HasKey(bc => new { bc.UserId, bc.ProductId });
+            modelBuilder.Entity<ShoppingCart>()
+                .HasOne(bc => bc.User)
+                .WithMany(b => b.ShoppingCarts)
+                .HasForeignKey(bc => bc.UserId);
+            modelBuilder.Entity<ShoppingCart>()
+                .HasOne(bc => bc.Product)
+                .WithMany(c => c.ShoppingCarts)
+                .HasForeignKey(bc => bc.ProductId);
+            {
+                base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<ShoppingCart>()
-                .HasKey(sc => new { sc.UserId, sc.ProductId });
-            modelBuilder.Entity<ShoppingCart>()
-                .HasOne(sc => sc.User)
-                .WithMany(sc => sc.ShoppingCarts)
-                .HasForeignKey(sc => sc.UserId);
-            modelBuilder.Entity<ShoppingCart>()
-                .HasOne(sc => sc.Product)
-                .WithMany(sc => sc.ShoppingCarts)
-                .HasForeignKey(sc => sc.ProductId);
+                modelBuilder.Entity<Review>()
+                    .HasKey(bc => new { bc.UserId, bc.ProductId });
+                modelBuilder.Entity<Review>()
+                    .HasOne(bc => bc.User)
+                    .WithMany(b => b.Reviews)
+                    .HasForeignKey(bc => bc.UserId);
+                modelBuilder.Entity<Review>()
+                    .HasOne(bc => bc.Product)
+                    .WithMany(c => c.Reviews)
+                    .HasForeignKey(bc => bc.ProductId);
+
+            }
         }
 
     }
