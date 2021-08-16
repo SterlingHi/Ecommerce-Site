@@ -20,7 +20,7 @@ namespace eCommerceStarterCode.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            //   modelBuilder.ApplyConfiguration(new RolesConfiguration());
+            modelBuilder.ApplyConfiguration(new RolesConfiguration());
             modelBuilder.Entity<ShoppingCart>()
                    .HasKey(bc => new { bc.UserId, bc.ProductId });
             modelBuilder.Entity<ShoppingCart>()

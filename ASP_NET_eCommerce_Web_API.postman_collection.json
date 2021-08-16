@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c4829ba3-31fe-48ab-8f89-459210f3d5e9",
+		"_postman_id": "72c5fe14-8174-4e0e-a753-165095b5156b",
 		"name": "ASP_NET_eCommerce_Web_API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -112,7 +112,9 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": null
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				},
@@ -172,8 +174,17 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryId\": 6,\r\n    \"categoryName\": \"Jackets\",\r\n    \"productCategories\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "https://localhost:44394/api/categories/",
+							"raw": "https://localhost:44394/api/categories/6",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -182,7 +193,7 @@
 							"path": [
 								"api",
 								"categories",
-								""
+								"6"
 							]
 						}
 					},
@@ -194,7 +205,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:44394/api/categories/",
+							"raw": "https://localhost:44394/api/categories/6",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -203,9 +214,238 @@
 							"path": [
 								"api",
 								"categories",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reviews",
+			"item": [
+				{
+					"name": "Get_All_Reviews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Get_all _Product",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:44394/api/product/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44394",
+							"path": [
+								"api",
+								"product",
+								""
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvcmRhbiIsImVtYWlsIjoiam9yZGFuQGRldmNvZGVjYW1wLmNvbSIsImlkIjoiMWMxMWQyOGEtYWZjYi00MDEyLTgwOTUtMDc1NzI0ZWU4NTk1IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTYyODgwMTAzMCwiaXNzIjoiZUNvbW1lcmNlV2ViQVBJIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NTAwMSJ9.rT5u7Brg-_FEkOHAxjcuEk05NH64tMvFqPKalIMK5AU",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:44394/api/product/14",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44394",
+							"path": [
+								"api",
+								"product",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"name\": \"Supreme Brick\",\r\n        \"price\": 12,\r\n        \"description\": \"Fancy Brick\",\r\n        \"rating\": 2,\r\n        \"shoppingCartId\": 5,\r\n        \"shoppingCarts\": null,\r\n        \"categoryId\": 2,\r\n        \"category\": null\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44394/api/product",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44394",
+							"path": [
+								"api",
+								"product"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvcmRhbiIsImVtYWlsIjoiam9yZGFuQGRldmNvZGVjYW1wLmNvbSIsImlkIjoiMWMxMWQyOGEtYWZjYi00MDEyLTgwOTUtMDc1NzI0ZWU4NTk1IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTYyODgwMTAzMCwiaXNzIjoiZUNvbW1lcmNlV2ViQVBJIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NTAwMSJ9.rT5u7Brg-_FEkOHAxjcuEk05NH64tMvFqPKalIMK5AU",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"productId\": 5,\r\n        \"name\": \"Supreme Oreos\",\r\n        \"price\": 20,\r\n        \"description\": \"Cool Oreos\",\r\n        \"rating\": 3,\r\n        \"shoppingCartId\": 2,\r\n        \"shoppingCarts\": null,\r\n        \"categoryId\": 2,\r\n        \"category\": null\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44394/api/product/5",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44394",
+							"path": [
+								"api",
+								"product",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ShoppingCart",
+			"item": [
+				{
+					"name": "Get_All_Items",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hc3Rlcm0iLCJlbWFpbCI6Im1pbHRvbjM1N0BtbS5jb20iLCJpZCI6ImFmNjJkZDYzLTJmZTMtNDQ1OC04ODgwLTg0MzRiOTFhYWIyYiIsImV4cCI6MTYyODg4Njc4NywiaXNzIjoiZUNvbW1lcmNlV2ViQVBJIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NTAwMSJ9.V2_s4FUi8xYmOFBTZbXTqU0rwQAH3e17qlve-4Jk9AI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:44394/api/shoppingcart/af62dd63-2fe3-4458-8880-8434b91aab2b",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44394",
+							"path": [
+								"api",
+								"shoppingcart",
+								"af62dd63-2fe3-4458-8880-8434b91aab2b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add_Item_To_Cart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"33882b5b-8897-4d66-bf0d-5cbc7879432d\",\r\n    \"productId\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44394/api/shoppingcart/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44394",
+							"path": [
+								"api",
+								"shoppingcart",
 								""
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "DE_ITEM",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": null
 					},
 					"response": []
 				}
