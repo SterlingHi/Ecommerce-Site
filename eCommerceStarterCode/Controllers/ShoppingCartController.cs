@@ -1,9 +1,11 @@
 ﻿using eCommerceStarterCode.Data;
 using eCommerceStarterCode.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace eCommerceStarterCode.Controllers
@@ -17,28 +19,16 @@ namespace eCommerceStarterCode.Controllers
         {
             _context = context;
         }
+               
 
-
-        //// Get by UserId
-        //[HttpGet("{UserId}")]
-        //public IActionResult Get([FromBody]ShoppingCart value)
-        //{
-        //    var shoppingCart = _context.ShoppingCarts;
-        //    var specificUserCart = shoppingCart.Where(sc => sc.UserId == value.UserId);
-        //    return Ok(specificUserCart);
-        //}
-
-
-        [HttpGet("{UserId}")]
-        public IActionResult GetShoppingCartByUserId(string UserId)
+        [HttpGet(), Authorize]
+        public IActionResult Get()
         {
-            var ShoppingCart = _context.ShoppingCarts.Where(sc => sc.UserId == UserId);
-            if (ShoppingCart == null)
-            {
-                return NotFound();
-            }
-            return Ok(ShoppingCart);
+            var shoppingCart = _context.ShoppingCarts;
+            var specificCart = shoppingCart.Where(sc => sc.UserId == User.FindFirstValue("id"));
+            return Ok(specificCart);
         }
+
         [HttpPost]
         public IActionResult Post([FromBody] ShoppingCart value)
         {
@@ -46,6 +36,7 @@ namespace eCommerceStarterCode.Controllers
             _context.SaveChanges();
             return StatusCode(201, value);
         }
+
         [HttpDelete("{ProudctId}/{UserId}")]
         public IActionResult Remove(int ProudctId, string UserId)
         {
@@ -58,15 +49,6 @@ namespace eCommerceStarterCode.Controllers
             _context.SaveChanges();
             return Ok(deleteProduct);
         }
-        //add by ProudctId
-
-
-
-        //Start requests here.
-        //public IActionResult YouNameIt()
-        //{
-        //    return View();
-        //}
     }
 }
 

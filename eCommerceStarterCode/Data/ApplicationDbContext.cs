@@ -20,32 +20,38 @@ namespace eCommerceStarterCode.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            // Assigns Roles. Do not delete or comment out upon Update-Database
             modelBuilder.ApplyConfiguration(new RolesConfiguration());
-            modelBuilder.Entity<ShoppingCart>()
-                   .HasKey(bc => new { bc.UserId, bc.ProductId });
-            modelBuilder.Entity<ShoppingCart>()
-                .HasOne(bc => bc.User)
-                .WithMany(b => b.ShoppingCarts)
-                .HasForeignKey(bc => bc.UserId);
-            modelBuilder.Entity<ShoppingCart>()
-                .HasOne(bc => bc.Product)
-                .WithMany(c => c.ShoppingCarts)
-                .HasForeignKey(bc => bc.ProductId);
-            {
-                base.OnModelCreating(modelBuilder);
 
-                modelBuilder.Entity<Review>()
-                    .HasKey(bc => new { bc.UserId, bc.ProductId });
-                modelBuilder.Entity<Review>()
-                    .HasOne(bc => bc.User)
-                    .WithMany(b => b.Reviews)
-                    .HasForeignKey(bc => bc.UserId);
-                modelBuilder.Entity<Review>()
-                    .HasOne(bc => bc.Product)
-                    .WithMany(c => c.Reviews)
-                    .HasForeignKey(bc => bc.ProductId);
+            // Assigns relationship between User, Product and ShoppingCart tables.
+            modelBuilder.Entity<ShoppingCart>()
+                .HasKey(sc => new { sc.UserId, sc.ProductId });
+            modelBuilder.Entity<ShoppingCart>()
+                .HasOne(sc => sc.User)
+                .WithMany(sc => sc.ShoppingCarts)
+                .HasForeignKey(sc => sc.UserId);
+            modelBuilder.Entity<ShoppingCart>()
+                .HasOne(sc => sc.Product)
+                .WithMany(sc => sc.ShoppingCarts)
+                .HasForeignKey(sc => sc.ProductId);
 
-            }
+            modelBuilder.Entity<Review>()
+                .HasKey(rev => new { rev.UserId, rev.ProductId });
+            modelBuilder.Entity<Review>()
+                .HasOne(rev => rev.User)
+                .WithMany(rev => rev.Reviews)
+                .HasForeignKey(rev => rev.UserId);
+            modelBuilder.Entity<Review>()
+                .HasOne(rev => rev.Product)
+                .WithMany(rev => rev.Reviews)
+                .HasForeignKey(rev => rev.ProductId);
+
+            modelBuilder.Entity<Category>()
+                .HasKey(cat => new { cat.CategoryId });
+            modelBuilder.Entity<Category>()
+                .HasOne(cat => cat.Product)
+                .WithMany(cat => cat.Categories)
+                .HasForeignKey(cat => cat.ProductId);
         }
 
     }
